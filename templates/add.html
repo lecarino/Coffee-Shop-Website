@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Cafe</title>
+</head>
+<body>
+    <h1>Add a New Cafe</h1>
+    <a href="{{ url_for('home') }}"><button>Back to Main Menu</button></a>
+    <form method="POST" action="{{ url_for('post_new_cafe') }}">
+        {{ form.hidden_tag() }}
+
+        {{ form.name.label }}
+        {{ form.name(size=32) }}
+        <br>
+
+        {{ form.map_url.label }}
+        {{ form.map_url(size=32) }}
+        <br>
+
+        {{ form.img_url.label }}
+        {{ form.img_url(size=32) }}
+        <br>
+
+        {{ form.location.label }}
+        {{ form.location(size=32) }}
+        <br>
+
+        {{ form.has_sockets }}
+        {{ form.has_sockets.label }}
+        <br>
+
+        {{ form.has_toilet }}
+        {{ form.has_toilet.label }}
+        <br>
+
+        {{ form.has_wifi }}
+        {{ form.has_wifi.label }}
+        <br>
+
+        {{ form.can_take_calls }}
+        {{ form.can_take_calls.label }}
+        <br>
+
+        {{ form.seats.label }}
+        {{ form.seats(size=32) }}
+        <br>
+
+        {{ form.coffee_price.label }}
+        {{ form.coffee_price(size=32) }}
+        <br>
+
+        {{ form.submit() }}
+    </form>
+</body>
+</html>

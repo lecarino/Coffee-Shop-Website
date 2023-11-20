@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Cafe</title>
+</head>
+<body>
+    <h1>Update a Cafe</h1>
+    <a href="{{ url_for('home') }}"><button>Back to Main Menu</button></a>
+    <!-- Add this form in your HTML template -->
+    <form method="POST" action="{{ url_for('path_new_price', cafe_id=cafe.id) }}">
+        <!-- Use the hidden input field to specify the PATCH method -->
+        <input type="hidden" name="_method" value="PATCH">
+        <!-- Add the new price input field and a submit button -->
+        <input type="text" name="new_price" placeholder="Enter new price">
+        <button type="submit">Update Price</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Cafe</title>
+</head>
+<body>
+    <h1>Delete a Cafe</h1>
+    <a href="{{ url_for('home') }}"><button>Back to Main Menu</button></a>
+    <!-- Add this form in your HTML template -->
+    <form method="POST" action="{{ url_for('delete_cafe', cafe_id=cafe.id) }}">
+        <label for="api-key">API Key:</label>
+        <input type="text" name="api-key" id="api-key" required>
+        <button type="submit">Delete Cafe</button>
+    </form>    
+</body>
+</html>

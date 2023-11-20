@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafes</title>
+</head>
+<body>
+    <h1>CAFES</h1>
+    <a href="{{ url_for('home') }}"><button>Back to Main Menu</button></a>
+    <ul>
+        {% for cafe in cafes %}
+            <li>
+                <h2>{{ cafe.name }}</h2>
+                <!-- Add an <img> tag to display the cafe image -->
+                <img src="{{ cafe.img_url }}" alt="{{ cafe.name }} Image" width="200">
+                <p><strong>Location:</strong> {{ cafe.location }}</p>
+                <p><strong>Seats:</strong> {{ cafe.seats }}</p>
+                <p><strong>Has Toilet:</strong> {% if cafe.has_toilet %}Yes{% else %}No{% endif %}</p>
+                <p><strong>Has WiFi:</strong> {% if cafe.has_wifi %}Yes{% else %}No{% endif %}</p>
+                <p><strong>Has Sockets:</strong> {% if cafe.has_sockets %}Yes{% else %}No{% endif %}</p>
+                <p><strong>Can Take Calls:</strong> {% if cafe.can_take_calls %}Yes{% else %}No{% endif %}</p>
+                <p><strong>Coffee Price:</strong> {{ cafe.coffee_price }}</p>
+                <!-- Add more details as needed -->
+
+                <!--update or delete the cafe -->
+                
+                <a href="{{ url_for('update_cafe_form', cafe_id=cafe.id) }}">Update Price</a>
+
+                <a href="{{ url_for('delete_cafe_form', cafe_id=cafe.id) }}">Delete Cafe</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
