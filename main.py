@@ -1,23 +1,8 @@
 from flask import Flask, jsonify, render_template, request, redirect, url_for, abort
 from flask_sqlalchemy import SQLAlchemy
-import random
 from forms import CreateCafeForm
 from flask_ckeditor import CKEditor
 from flask_bootstrap import Bootstrap4
-
-
-'''
-Install the required packages first: 
-Open the Terminal in PyCharm (bottom left). 
-
-On Windows type:
-python -m pip install -r requirements.txt
-
-On MacOS type:
-pip3 install -r requirements.txt
-
-This will install the packages from requirements.txt for this project.
-'''
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "secretkey"
@@ -28,7 +13,6 @@ bootstrap = Bootstrap4(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cafes.db'
 db = SQLAlchemy()
 db.init_app(app)
-
 
 # Cafe TABLE Configuration
 class Cafe(db.Model):
@@ -51,41 +35,40 @@ class Cafe(db.Model):
 with app.app_context():
     db.create_all()
 
-
 @app.route("/")
 def home():
-    return render_template("index.html")
-
-# @app.route('/random')
-# def get_random_cafe():
-#     result = db.session.execute(db.select(Cafe))
-#     all_cafes = result.scalars().all()
-#     random_cafe = random.choice(all_cafes)
-#     return jsonify(cafe=random_cafe.to_dict())
-
-@app.route('/all')
-def get_all_cafes():
     result = db.session.execute(db.select(Cafe))
     all_cafes = result.scalars().all()
-    print(all_cafes)
-    return render_template("cafes.html", cafes=all_cafes)
+    return render_template("index.html", cafes=all_cafes)
 
-@app.route('/search')
-def search_cafe():
-    query_location = request.args.get('loc')
-    result = db.session.execute(db.select(Cafe).where( Cafe.location== query_location))
-    #All cafes at that location
-    all_cafes = result.scalars().all()
+# @app.route('/all')
+# def get_all_cafes():
+#     result = db.session.execute(db.select(Cafe))
+#     all_cafes = result.scalars().all()
+#     return render_template("cafes.html", cafes=all_cafes)
 
-    if all_cafes:
-        return jsonify(cafes= [cafe.to_dict() for cafe in all_cafes])
-    else:
-        return jsonify(error = {"NOT FOUND":"sorry there is no cafe for this location in our database"}), 404
+@app.route('/<int:cafe_id>',  methods=['GET'])
+def cafe(cafe_id):
+    cafe =db.session.get(Cafe,cafe_id)
+    return render_template('cafe.html', cafe=cafe)
+
+# @app.route('/search')
+# def search_cafe():
+#     query_location = request.args.get('loc')
+#     result = db.session.execute(db.select(Cafe).where( Cafe.location== query_location))
+#     #All cafes at that location
+#     all_cafes = result.scalars().all()
+
+#     if all_cafes:
+#         return jsonify(cafes= [cafe.to_dict() for cafe in all_cafes])
+#     else:
+#         return jsonify(error = {"NOT FOUND":"sorry there is no cafe for this location in our database"}), 404
     
 @app.route("/add", methods=["GET", "POST"])
 def post_new_cafe():
     form = CreateCafeForm()
-
+    print(form.validate_on_submit())
+    print(form.name.data)
     if form.validate_on_submit():
         new_cafe = Cafe(
             name=form.name.data,

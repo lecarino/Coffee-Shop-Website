@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="static/css/styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <title>{{ cafe.name }}</title>
+</head>
+<body>
+    <section class="header-section">
+        <h1>{{ cafe.name }}</h2>
+        <a href="{{ url_for('home') }}"> <div class="link header-link"> Home Page</div></a>
+    </section>
+
+    <section class="section">
+        <div class="container-form">
+            <div class="container-cafe">
+                <img class="card-image" src="{{ cafe.img_url }}" alt="{{ cafe.name }} Image" width="100%" >
+                <p class="card-paragraph"><strong>Location:</strong> {{ cafe.location }}</p>
+                <p class="card-paragraph"><strong>Seats:</strong> {{ cafe.seats }}</p>
+                <p class="card-paragraph"><strong>Has Toilet:</strong> {% if cafe.has_toilet %}Yes{% else %}No{% endif %}</p>
+                <p class="card-paragraph"><strong>Has WiFi:</strong> {% if cafe.has_wifi %}Yes{% else %}No{% endif %}</p>
+                <p class="card-paragraph"><strong>Has Sockets:</strong> {% if cafe.has_sockets %}Yes{% else %}No{% endif %}</p>
+                <p class="card-paragraph"><strong>Can Take Calls:</strong> {% if cafe.can_take_calls %}Yes{% else %}No{% endif %}</p>
+                <p class="card-paragraph"><strong>Coffee Price:</strong> {{ cafe.coffee_price }}</p>
+            </div>
+            <a class="header-link cafe-card-link" href="{{ url_for('update_cafe_form', cafe_id=cafe.id) }}">Update Price</a>
+            <a class="header-link cafe-card-link" href="{{ url_for('delete_cafe_form', cafe_id=cafe.id) }}">Delete Cafe</a>
+        </div>
+    </section>
+
+    <section class="footer-section">
+        <div class="footer-block">© All rights reserved Larrenz Carino.</div>
+    </section>
+   
+        
+   
+   
+</body>
+</html>

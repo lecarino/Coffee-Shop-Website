@@ -3,18 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <title>Update Cafe</title>
 </head>
 <body>
-    <h1>Update a Cafe</h1>
-    <a href="{{ url_for('home') }}"><button>Back to Main Menu</button></a>
-    <!-- Add this form in your HTML template -->
-    <form method="POST" action="{{ url_for('path_new_price', cafe_id=cafe.id) }}">
-        <!-- Use the hidden input field to specify the PATCH method -->
-        <input type="hidden" name="_method" value="PATCH">
-        <!-- Add the new price input field and a submit button -->
-        <input type="text" name="new_price" placeholder="Enter new price">
-        <button type="submit">Update Price</button>
-    </form>
+    <section class="header-section">
+        <h1>Update {{cafe.name}}</h1>
+        <a href="{{ url_for('home') }}"> <div class="link header-link"> Home Page </div></a>
+    </section>
+    
+   <section class="section">
+    <section class="container-form">
+        <form class="update-form" method="POST" action="{{ url_for('path_new_price', cafe_id=cafe.id) }}">
+            <input type="hidden" name="_method" value="PATCH">
+            <input class="input-update" type="text" name="new_price" placeholder="Enter new price">
+            <button type="submit">Update Price</button>
+         </form>
+    </section>
+
+   </section>
+
+    <section class="footer-section">
+        <div class="footer-block">© All rights reserved Larrenz Carino.</div>
+    </section>
+
 </body>
 </html>

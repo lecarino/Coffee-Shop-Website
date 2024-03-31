@@ -3,10 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Cafe Spots Around Me</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
 </head>
 <body>
-    <h1>Cafe Spots Around Me</h1>
-    <a href="{{ url_for('post_new_cafe') }}"><button>Add A New Cafe</button></a>
-    <a href="{{ url_for('get_all_cafes') }}"><button>All Cafes</button></a>
-</body>
+    <section class="header-section">
+        <a href="{{ url_for('home') }}" class="heading-link">
+            <h1 class="heading">Cafe Review Website</h1>
+        </a>
+        <a href="{{ url_for('post_new_cafe') }}" class="link-block">
+          <div class="link header-link">Add New Cafe</div>
+        </a>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="blog-grid">
+              {% for cafe in cafes %}
+              <div class="collection-item">
+                <a href="{{url_for('cafe', cafe_id=cafe.id)}}" class="card-link">
+                  <div class="blog-card"> 
+                    <img src="{{ cafe.img_url }}" alt="{{ cafe.name }} Image" class="thumbnail">
+                    <div class="card-content">
+                      <div class="div-block-10">
+                        <h2 class="heading-2">{{ cafe.name }}</h2>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="footer-section">
+      <div class="footer-block">© All rights reserved Larrenz Carino.</div>
+    </section>
+
+  </body>
 </html>

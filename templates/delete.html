@@ -3,16 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <title>Delete Cafe</title>
 </head>
 <body>
-    <h1>Delete a Cafe</h1>
-    <a href="{{ url_for('home') }}"><button>Back to Main Menu</button></a>
-    <!-- Add this form in your HTML template -->
-    <form method="POST" action="{{ url_for('delete_cafe', cafe_id=cafe.id) }}">
-        <label for="api-key">API Key:</label>
-        <input type="text" name="api-key" id="api-key" required>
-        <button type="submit">Delete Cafe</button>
-    </form>    
+    <section class="header-section">
+        <h1>Delete {{ cafe.name }}</h1>
+        <a href="{{ url_for('home') }}"> <div class="link header-link"> Home Page </div></a>
+    </section>
+   
+    <section class="section">
+        <div class="container-form">
+            <form class="update-form" method="POST" action="{{ url_for('delete_cafe', cafe_id=cafe.id) }}">
+                <label for="api-key">API Key:</label>
+                <input type="text" name="api-key" id="api-key" required>
+                <button type="submit">Delete Cafe</button>
+            </form>    
+        </div>
+    </section>
+    
+    <section class="footer-section">
+        <div class="footer-block">© All rights reserved Larrenz Carino.</div>
+    </section>
+    
+    
 </body>
 </html>
